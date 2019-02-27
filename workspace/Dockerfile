@@ -470,7 +470,7 @@ USER laradock
 ###########################################################################
 
 # Check if NVM needs to be installed
-ARG NODE_VERSION=node
+ARG NODE_VERSION=10.15.0
 ENV NODE_VERSION ${NODE_VERSION}
 ARG INSTALL_NODE=false
 ARG INSTALL_NPM_GULP=false
@@ -940,6 +940,14 @@ RUN if [ ${INSTALL_MYSQL_CLIENT} = true ]; then \
 ###########################################################################
 
 RUN set -xe; php -v | head -n 1 | grep -q "PHP ${LARADOCK_PHP_VERSION}."
+
+####################################
+# hologram
+####################################
+RUN apt-get update
+RUN apt-get install ruby-dev -y
+RUN apt-get install rubygems -y
+RUN gem install hologram
 
 #
 #--------------------------------------------------------------------------
